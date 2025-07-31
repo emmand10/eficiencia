@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chatbot Synneo - Plein écran</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background: url('https://dev.selection-by-synneo.fr/img/cms/background.png') no-repeat center center;
+      background-size: cover;
+    }
+
+#chat-container {
+  height: 100vh;
+  width: 30vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;         /* centre verticalement */
+  justify-content: center;    /* centre horizontalement */
+  margin: 0 auto; 
+  border-top: none !important;
+    }
+
+    .n8n-chat-powered {
+      display: none !important;
+    }
+
+    :root {
+      /* Couleurs principales */
+      --chat--color-primary: #49D6BB;
+      --chat--color-secondary: #49D6BB;
+      --chat--color-white: #ffffff;
+      --chat--color-light: transparent;
+      --chat--color-dark: #101330;
+
+      /* Header transparent */
+      --chat--header--background: transparent;
+      --chat--header--color: #ffffff;
+
+      /* Bulles utilisateur */
+      --chat--message--user--background: #49D6BB;
+      --chat--message--user--color: #ffffff;
+      --chat--message--user--border: none;
+
+      /* Bulles chatbot */
+      --chat--message--bot--background: #e0f4fa;
+      --chat--message--bot--color: #000000;
+      --chat--message--bot--border: none;
+
+      /* Style bulles (visuellement recentrées) */
+      --chat--message--font-size: 1rem;
+      --chat--message-line-height: 1;
+      --chat--message--padding: 1rem 2rem;
+      --chat--message--border-radius: 10px;
+
+      /* Bordures et coins */
+      --chat--window--border-radius: 0px;
+    }
+
+   /* ✅ Barre de saisie centrée avec espace en bas */
+.n8n-chat .chat-input {
+  width: 70% !important;
+  margin: 0 auto 50px auto !important;
+  position: relative; /* pour permettre au bouton d’être positionné absolument */
+}
+
+.n8n-chat .chat-input textarea {
+  width: 100% !important;
+  border: #49D6BB !important;
+  outline: transparent;
+  resize: none;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 0.6em 3.2em 0.6em 0.6em; /* padding à droite augmenté pour éviter que le texte chevauche le bouton */
+  box-shadow: none !important;
+}
+
+.n8n-chat .chat-input button {
+  position: absolute;
+  right: 10px; /* espace entre le bord droit du textarea et le bouton */
+  top: 50%;
+  transform: translateY(-50%); /* centrage vertical */
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #49D6BB;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  z-index: 2; /* s’assurer qu’il est bien au-dessus */
+}
+
+  </style>
+</head>
+<body>
+  <div id="chat-container"></div>
+
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+      webhookUrl: 'https://n8n.srv810164.hstgr.cloud/webhook/dfe7f469-a14b-4c5d-83c4-17bc96b9743d/chat',
+      mode: 'fullscreen',
+      target: '#chat-container',
+      showWelcomeScreen: false,
+      initialMessages: [
+        'Bonjour 👋 Je suis Syntia, votre conseillère en objets publicitaires.',
+        'Pour commencer, quel est le lien du site internet de votre entreprise ?'
+      ],
+      defaultLanguage: 'fr',
+      i18n: {
+        fr: {
+          title: ' ',
+          subtitle: '',
+          footer: '',
+          getStarted: 'Commencer',
+          inputPlaceholder: 'Posez votre question ici...'
+        }
+      }
+    });
+  </script>
+</body>
+</html>
